@@ -3,6 +3,7 @@ pragma solidity >=0.8.0 <0.9.0;
 
 // Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 // Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
 // import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -22,6 +23,7 @@ contract YourContract {
 
     // Events: a way to emit log statements from smart contract that can be listened to by external parties
     event GreetingChange(address greetingSetter, string newGreeting, bool premium, uint256 value);
+    event  MultiTransfer(address indexed token, address indexed recipient, uint256 indexed amount, address sender);
 
     // Constructor: Called once on contract deployment
     // Check packages/hardhat/deploy/00_deploy_your_contract.ts
@@ -69,6 +71,15 @@ contract YourContract {
     function withdraw() isOwner public {
         (bool success,) = owner.call{value: address(this).balance}("");
         require(success, "Failed to send Ether");
+    }
+
+    function multiSend(address[] calldata _to, address[] calldata _tokenAddress, uint256[] calldata _amount) external payable returns (bool) {
+        require(((_to.length == _tokenAddress.length) && (_to.length == _amount.length)), "Invalid Input Data");
+        for (uint i = 0; i < _to.length; i++) {
+            assert((IERC20(_tokenAddress[i]).transfer(_to[i], _amount[i])) == true);
+            emit MultiTransfer(_tokenAddress[i], _to[i], _amount[i], msg.sender);
+        }
+        return true;
     }
 
     /**
