@@ -9,48 +9,63 @@ import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 export const ContractInteraction = () => {
   const initTokens: string[] = [];
   const initRecipients: string[] = [];
-  const initAmounts: number[] = [];
+  const initAmounts: string[] = [];
   const [newToken, setNewToken] = useState("");
   const [newRecipient, setNewRecipient] = useState("");
-  const [newAmount, setNewAmount] = useState(0);
-  const [arrayLength, setArrayLength] = useState(0);
+  const [newAmount, setNewAmount] = useState("");
   const [tokenList, setTokenList] = useState(initTokens);
   const [recipientList, setRecipientList] = useState(initRecipients);
   const [tokenAmounts, setTokenAmounts] = useState(initAmounts);
-  //const [bigNumberAmounts, setBigNumberAmounts] = useState([]);
-  const txValue = "0.001";
+  
+
+  function clearFields() {
+    const _token = document.getElementById("token");
+    const _recipient = document.getElementById("recipient");
+    const _amount = document.getElementById("amount");
+    _token.value = "";
+    _recipient.value = "";
+    _amount.value = "";
+    setNewToken("");
+    setNewRecipient("");
+    setNewAmount("");
+  } 
 
   const handleAdd = (e: any) => {
     e.preventDefault();
     // eslint-disable-next-line prettier/prettier
     setTokenList([
-      newToken,
-      ...tokenList
+      ...tokenList,
+      newToken
       ]);
     // eslint-disable-next-line prettier/prettier
     setRecipientList([
-      newRecipient,
-      ...recipientList
+      ...recipientList,
+      newRecipient
       ]);
     // eslint-disable-next-line prettier/prettier
     setTokenAmounts([
-      newAmount,
-      ...tokenAmounts
+      ...tokenAmounts,
+      newAmount
       ]);
-    // setBigNumberAmounts([
-    //   ethers.BigNumber.from(newAmount),
-    //   ...bigNumberAmounts
-    //   ]);
-    setArrayLength(arrayLength + 1);
+    
+    clearFields();
     console.log(tokenList);
   };
 
   const { writeAsync, isLoading } = useScaffoldContractWrite({
     contractName: "YourContract",
     functionName: "multiSend",
-    args: [tokenList, recipientList, [ethers.BigNumber.from(100)]],
-    value: txValue,
+    args: [recipientList, tokenList, tokenAmounts],
   });
+
+  const clearLastTx = () => {
+    tokenList.pop();
+    recipientList.pop();
+    tokenAmounts.pop();
+    setTokenList(tokenList);
+    setRecipientList(recipientList);
+    setTokenAmounts(tokenAmounts);
+  };
 
   return (
     <div>
@@ -66,21 +81,24 @@ export const ContractInteraction = () => {
             <div className="mt-8 flex flex-row sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
               <input
                 type="text"
+                id="token"
                 placeholder="Token Address"
                 className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
                 onChange={e => setNewToken(e.target.value)}
               />
               <input
                 type="text"
+                id="recipient"
                 placeholder="Recipient Address"
                 className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
                 onChange={e => setNewRecipient(e.target.value)}
               />
               <input
-                type="number"
+                type="text"
+                id="amount"
                 placeholder="Amount to Send"
                 className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
-                onChange={e => setNewAmount(parseInt(e.target.value))}
+                onChange={e => setNewAmount(e.target.value)}
               />
               <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
                 <div className="flex rounded-full border-2 border-primary p-1">
@@ -112,25 +130,40 @@ export const ContractInteraction = () => {
               </div>
             </div>
             <div className="mt-4 flex flex-col gap-2 items-center">
-              <span className="text-sm leading-tight">Price:</span>
-              <div className="badge badge-warning">{txValue} ETH + Gas</div>
+              <span className="text-sm leading-tight">Enter Amount in Wei</span>
             </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-center items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] py-96 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
-        <div className={`flex flex-row max-w-md bg-base-200 bg-opacity-70 rounded-2xl shadow-lg px-5 py-4 w-full`}>
+      <div className="flex flex-col justify-center items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] py-96 px-5 sm:px-0 lg:py-auto max-w-[100vw] ">
+        <div className={`flex flex-col justify-center items-center max-w-fit bg-base-200 bg-opacity-70 rounded-2xl shadow-lg px-5 py-4 w-full`}>
           <ul>
             {tokenList.length >= 1
               ? tokenList.map((token, idx) => {
                   return (
                     <li key={idx}>
-                      {token}, {recipientList[idx]}, {tokenAmounts[idx]}
+                      <small>Token:</small> <b>{token.substring(0,6)}...{token.substring(token.length - 3)}  </b> 
+                      <small>Recipient:</small> <b>{recipientList[idx].substring(0,6)}...{recipientList[idx].substring(recipientList[idx].length - 3)}  </b> 
+                      <small>Amount:</small> <b>{tokenAmounts[idx]}</b>
                     </li>
                   );
                 })
               : `Enter a Token TX`}
           </ul>
+        </div>
+        <div className="py-5">
+          <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
+            <div className="flex rounded-full border-2 border-primary p-1">
+              <button
+                className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
+                  isLoading ? "loading" : ""
+                }`}
+                onClick={clearLastTx}
+              >
+                {!isLoading && <>Clear Last Tx</>}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

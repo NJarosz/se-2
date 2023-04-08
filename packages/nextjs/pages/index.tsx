@@ -15,15 +15,16 @@ const Home: NextPage = () => {
         <div className="px-5">
           <h1 className="text-center mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">scaffold-eth 2</span>
+            <span className="block text-4xl font-bold">the MultiSender</span>
           </h1>
           <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold">packages/nextjs/pages/index.tsx</code>
+            Use this contract as a Token custodian to send multiple tokens to multiple addresses in one transaction{" "}
           </p>
           <p className="text-center text-lg">
-            Edit your smart contract <code className="italic bg-base-300 text-base font-bold">YourContract.sol</code> in{" "}
-            <code className="italic bg-base-300 text-base font-bold">packages/hardhat/contracts</code>
+            Edit the <code className="italic bg-base-300 text-base font-bold">00_deploy_your_contract.ts</code> file to set your address as the owner.{" "}
+          </p>
+          <p className="text-center text-lg">
+            Fund the smart contract with you tokens.
           </p>
         </div>
 

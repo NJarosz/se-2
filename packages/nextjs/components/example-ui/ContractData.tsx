@@ -4,7 +4,7 @@ import { useAnimationConfig, useScaffoldContractRead, useScaffoldEventSubscriber
 
 const MARQUEE_PERIOD_IN_SEC = 5;
 
-export const ContractData = () => {
+export const ContractData = ({tokenAddrs, recipientAddrs, tokenAmts,}) => {
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [isRightDirection, setIsRightDirection] = useState(false);
   const [marqueeSpeed, setMarqueeSpeed] = useState(0);

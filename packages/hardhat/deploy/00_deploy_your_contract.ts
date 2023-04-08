@@ -24,7 +24,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   await deploy("YourContract", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    args: [],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -33,6 +33,12 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   // Get the deployed contract
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
+
+
+  // // Transfer ownership to your address
+  // // const ownerAddress = "0x060d17128102d2ea19C92CA0Db5f33856C6a0C68";
+  // await yourContract.transferOwnership("0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8");
+  // console.log("Ownership transfered to 0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8");
 };
 
 export default deployYourContract;

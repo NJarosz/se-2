@@ -5,82 +5,38 @@ pragma solidity >=0.8.0 <0.9.0;
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 // Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
-// import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * A smart contract that allows changing a state variable of the contract and tracking the changes
  * It also allows the owner to withdraw the Ether in the contract
  * @author BuidlGuidl
  */
-contract YourContract {
+contract YourContract is Ownable {
+    
+    // mapping(address => uint256) public tokens;
+    // address[] public ownedTokens;
+    
+    event MultiTransfer(address indexed _token, address indexed recipient, uint256 indexed value, address sender);
 
-    // State Variables
-    address public immutable owner;
-    string public greeting = "Building Unstoppable Apps!!!";
-    bool public premium = false;
-    uint256 public totalCounter = 0;
-    mapping(address => uint) public userGreetingCounter;
-
-    // Events: a way to emit log statements from smart contract that can be listened to by external parties
-    event GreetingChange(address greetingSetter, string newGreeting, bool premium, uint256 value);
-    event  MultiTransfer(address indexed token, address indexed recipient, uint256 indexed amount, address sender);
-
-    // Constructor: Called once on contract deployment
-    // Check packages/hardhat/deploy/00_deploy_your_contract.ts
-    constructor(address _owner) {
-        owner = _owner;
-    }
-
-    // Modifier: used to define a set of rules that must be met before or after a function is executed
-    // Check the withdraw() function
-    modifier isOwner() {
-        // msg.sender: predefined variable that represents address of the account that called the current function
-        require(msg.sender == owner, "Not the Owner");
-        _;
-    }
-
-    /**
-     * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
-     *
-     * @param _newGreeting (string memory) - new greeting to save on the contract
-     */
-    function setGreeting(string memory _newGreeting) public payable {
-        // Print data to the hardhat chain console. Remove when deploying to a live network.
-        console.log("Setting new greeting '%s' from %s",  _newGreeting, msg.sender);
-
-        // Change state variables
-        greeting = _newGreeting;
-        totalCounter += 1;
-        userGreetingCounter[msg.sender] += 1;
-
-        // msg.value: built-in global variable that represents the amount of ether sent with the transaction
-        if (msg.value > 0) {
-            premium = true;
-        } else {
-            premium = false;
-        }
-
-        // emit: keyword used to trigger an event
-        emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, 0);
-    }
-
-    /**
-     * Function that allows the owner to withdraw all the Ether in the contract
-     * The function can only be called by the owner of the contract as defined by the isOwner modifier
-     */
-    function withdraw() isOwner public {
-        (bool success,) = owner.call{value: address(this).balance}("");
+    function withdraw() onlyOwner public {
+        (bool success,) = msg.sender.call{value: address(this).balance}("");
         require(success, "Failed to send Ether");
     }
 
-    function multiSend(address[] calldata _to, address[] calldata _tokenAddress, uint256[] calldata _amount) external payable returns (bool) {
-        require(((_to.length == _tokenAddress.length) && (_to.length == _amount.length)), "Invalid Input Data");
+    function multiSend(
+        address[] calldata _to, 
+        address[] calldata _tokenAddress,
+        uint256[] calldata _value)
+        external returns (bool success) {
+        require(((_to.length == _tokenAddress.length)), "Invalid Input Data");
         for (uint i = 0; i < _to.length; i++) {
-            assert((IERC20(_tokenAddress[i]).transfer(_to[i], _amount[i])) == true);
-            emit MultiTransfer(_tokenAddress[i], _to[i], _amount[i], msg.sender);
+            (IERC20(_tokenAddress[i]).transfer(_to[i], _value[i]));
+            emit MultiTransfer(_tokenAddress[i], _to[i], _value[i], msg.sender);
         }
-        return true;
+        return true;     
     }
+    
 
     /**
      * Function that allows the contract to receive ETH
