@@ -1,3 +1,11 @@
+# MultiSend Transfer Token Custodian
+
+Fund this smart contract with your tokens, and send multiple tokens to multiple recipients in one transaction.  
+
+
+
+⚠️ Front end still needs some work, I am just getting used to this new Scaffold-Eth 2 toolkit.  Really, a lot about this build could be improved, so please fork and tinker!
+
 # Scaffold-Eth 2
 
 ⚠️ This project is currently under active development. Things might break. Feel free to check the open issues & create new ones.
@@ -31,7 +39,7 @@ Before you begin, you need to install the following tools:
 
 ## Quickstart
 
-To get started with Scaffold-Eth 2, follow the steps below:
+To get started with Multisend, follow the steps below:
 
 1. Clone this repo & install dependencies
 
