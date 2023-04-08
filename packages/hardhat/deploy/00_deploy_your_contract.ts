@@ -35,11 +35,6 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
 
 
-  // // Transfer ownership to your address
-  // // const ownerAddress = "0x060d17128102d2ea19C92CA0Db5f33856C6a0C68";
-  // await yourContract.transferOwnership("0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8");
-  // console.log("Ownership transfered to 0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8");
-};
 
 export default deployYourContract;
 
