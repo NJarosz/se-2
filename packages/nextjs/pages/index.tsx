@@ -18,7 +18,7 @@ const Home: NextPage = () => {
             <span className="block text-4xl font-bold">the MultiSender</span>
           </h1>
           <p className="text-center text-lg">
-            Use this contract as a Token custodian to send multiple tokens to multiple addresses in one transaction{" "}
+            Use this contract as a Token custodian to send multiple tokens to multiple addresses in one transaction.{" "}
           </p>
           <p className="text-center text-lg">
             Edit the <code className="italic bg-base-300 text-base font-bold">00_deploy_your_contract.ts</code> file to set your address as the owner.{" "}

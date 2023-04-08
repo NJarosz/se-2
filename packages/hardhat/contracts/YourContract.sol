@@ -18,6 +18,7 @@ contract YourContract is Ownable {
     // address[] public ownedTokens;
     
     event MultiTransfer(address indexed _token, address indexed recipient, uint256 indexed value, address sender);
+    event ReceivedTokens(address )
 
     function withdraw() onlyOwner public {
         (bool success,) = msg.sender.call{value: address(this).balance}("");
