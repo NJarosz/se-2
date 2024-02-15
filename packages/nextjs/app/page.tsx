@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { NextPage } from "next";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { Address } from "~~/components/scaffold-eth";
+import { Balance } from "~~/components/scaffold-eth";
 
 const Home: NextPage = () => {
   return (
@@ -11,6 +13,16 @@ const Home: NextPage = () => {
             <span className="block text-2xl mb-2">Welcome to</span>
             <span className="block text-4xl font-bold">Scaffold-ETH 2</span>
           </h1>
+          <div className="bg-base-300 p-6 rounded-lg max-w-md mx-auto mt-6 flex items-center">
+            <h2 className="text-lg font-bold mb-2">Your Ethereum Balance</h2>
+
+            <div className="text-sm font-semibold mb-2 mr-4">
+              Address: <Address address="0x060d17128102d2ea19C92CA0Db5f33856C6a0C68" />
+            </div>
+            <div className="text-sm font-semibold">
+              Balance: <Balance address="0x060d17128102d2ea19C92CA0Db5f33856C6a0C68" />
+            </div>
+          </div>
           <p className="text-center text-lg">
             Get started by editing{" "}
             <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
