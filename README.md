@@ -75,7 +75,7 @@ git checkout rfid-supply-chain</code></pre>
     </li>
     <li><strong>Viewing Product Status</strong>:
         <ul>
-            <li>On the homepage, enter a product ID in the input field.</li>
+            <li>Scanning a product should automatically update the product ID field on the homepage.</li>
             <li>Submit to retrieve real-time information on the product's state, including:
                 <ul>
                     <li>RFID hash</li>
@@ -88,7 +88,7 @@ git checkout rfid-supply-chain</code></pre>
     </li>
     <li><strong>Updating Product Status</strong>:
         <ul>
-            <li>Trigger RFID scans at different supply chain nodes to automatically update product status on the blockchain.</li>
+            <li>Scanning product at different supply chain nodes to update product status on the blockchain or to transfer ownership.</li>
         </ul>
     </li>
 </ol>
