@@ -37,14 +37,15 @@
     <li><strong>Frontend</strong>: Next.js, TypeScript, Tailwind CSS, Material-UI</li>
     <li><strong>Backend</strong>: Scaffold-ETH (Hardhat, Ethers.js), WebSocket</li>
     <li><strong>Blockchain</strong>: Ethereum (using Scaffold-ETH and Hardhat)</li>
-    <li><strong>Hardware</strong>: Python, Raspberry Pi for RFID scanning and communication</li>
+    <li><strong>Hardware</strong>: Python, Raspberry Pi, RC522 for RFID scanning and communication</li>
 </ul>
 
 <h2 id="installation">Installation</h2>
 <ol>
     <li><strong>Clone the repository</strong>:
         <pre><code>git clone https://github.com/NJarosz/se-2.git
-cd rfid-supply-chain</code></pre>
+cd se-2
+git checkout rfid-supply-chain</code></pre>
     </li>
     <li><strong>Install dependencies</strong>:
         <pre><code>yarn install</code></pre>
