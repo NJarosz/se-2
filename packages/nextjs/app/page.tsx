@@ -2,14 +2,14 @@
 
 import type { NextPage } from "next";
 
-import { ProductState } from "~~/components/ProductState";
+import { ProductStatus } from "~~/components/ProductStatus";
 
 const Home: NextPage = () => {
 
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
-        <ProductState />
+        <ProductStatus />
       </div>
     </>
   );

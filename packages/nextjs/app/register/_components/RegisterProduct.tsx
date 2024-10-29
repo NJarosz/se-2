@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useScaffoldWriteContract, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
-import { ethers } from "ethers";
+import useWebSocket from "~~/hooks/scaffold-eth/useWebSocket";
 
 export const RegisterProduct = () => {
     const [newName, setNewName] = useState<string>("");
@@ -45,37 +45,24 @@ export const RegisterProduct = () => {
         populateNodes();
     }, [nodes]);
 
-    // Receive data sent from RFID Scanner
+    const { data: productData, isConnected: connection } = useWebSocket('ws://localhost:4000');
+    // console.log("CONNECTION: ", connection); // Use this for debugging
+
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:4000'); //Configure to whichever port you defined in your websocket-server.ts file
-
-        socket.onopen = () => {
-            console.log('Connected to WebSocket server');
-        };
-
-        socket.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            setRfidData(data);
-        };
-
-        socket.onclose = () => {
-            console.log('Disconnected from WebSocket server');
-        };
-
-        return () => socket.close();
-    }, []);
-
+        if (productData) {
+            setRfidData(productData);
+        }
+    }, [productData]);
 
     const { writeContractAsync, isPending } = useScaffoldWriteContract("ProductRegistration");
 
     const handleProductRegistration = async () => {
         try {
             const concatRFID = rfidData.rfid.slice(0, 2) === "0x" ? rfidData.rfid : ("0x" + rfidData.rfid);
-            const formattedRFID = rfidData.rfid ? ethers.zeroPadBytes(concatRFID, 32) : undefined;
 
             const args = [
                 rfidData.id !== null ? BigInt(rfidData.id) : undefined,  // convert to BigInt if not null
-                formattedRFID,
+                concatRFID,
                 newName !== "" ? newName : undefined,        // include name if not empty
                 rfidData.supplyChainNode !== null ? BigInt(rfidData.supplyChainNode) : 0  // convert to BigInt if not null
             ].filter(arg => arg !== undefined);  // Filter out undefined values
@@ -91,6 +78,8 @@ export const RegisterProduct = () => {
                     },
                 },
             );
+            setNewName("");
+            setRfidData({ id: "", rfid: "", supplyChainNode: "" });
         } catch (e) {
             console.error("Error setting product registration", e);
         }
@@ -107,10 +96,10 @@ export const RegisterProduct = () => {
             >
                 {/* Product ID Input */}
                 <div className="mb-4">
-                    <label htmlFor="productID" className="block font-medium">Product ID:</label>
+                    <label htmlFor="productId" className="block font-medium">Product ID:</label>
                     <input
                         type="number"
-                        id="productID"
+                        id="productId"
                         className="border p-2 w-full"
                         name="id"
                         value={rfidData.id}

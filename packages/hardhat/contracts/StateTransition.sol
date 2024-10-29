@@ -13,7 +13,7 @@ contract StateTransition {
 
 	struct ProductState {
 		uint id;
-		bytes32 hashedRfid;
+		bytes24 hashedRfid;
 		State state;
 		string location;
 		uint timestamp;
@@ -43,17 +43,17 @@ contract StateTransition {
 	// This function is used to update the current state of a proudct.
 	function updateState(
 		uint id,
-		bytes memory rfid,
+		bytes24 rfid,
 		State newState,
 		uint location
 	) public {
-		bytes32 hashed = keccak256(abi.encodePacked(rfid)); // Hashes the RFID hash
+		//bytes32 hashed = keccak256(abi.encodePacked(rfid)); // Hashes the RFID hash
 
 		require(
-			productStates[id].id != NOT_REGISTERED,
-			"Product not registered"
+			productStates[id].id == NOT_REGISTERED ||
+				productStates[id].hashedRfid == rfid,
+			"Improper Inputs"
 		);
-		require(productStates[id].hashedRfid == hashed, "Invalid RFID");
 		require(location < nodeCount, "Invalid location");
 		// Enforce that if the new state is Shipped, the location must be 0
 		if (newState == State.Shipped) {
@@ -64,7 +64,7 @@ contract StateTransition {
 		}
 		productStates[id] = ProductState(
 			id,
-			hashed,
+			rfid,
 			newState,
 			supplyChainNodes[location],
 			block.timestamp

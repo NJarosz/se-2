@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useScaffoldWriteContract, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
-import { ethers } from "ethers";
+import useWebSocket from "~~/hooks/scaffold-eth/useWebSocket";
 
 export const UpdateState = () => {
     const [newStatus, setnewStatus] = useState<number | null>(null);
@@ -59,36 +59,24 @@ export const UpdateState = () => {
         populateNodes();
     }, [nodes]);
 
-    // Receive data sent from RFID Scanner
+    const { data: productData, isConnected: connection } = useWebSocket('ws://localhost:4000');
+    // console.log("CONNECTION: ", connection); // Use this for debugging
+
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:4000'); //Configure to whichever port you defined in your websocket-server.ts file
-
-        socket.onopen = () => {
-            console.log('Connected to WebSocket server');
-        };
-
-        socket.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            setRfidData(data);
-        };
-
-        socket.onclose = () => {
-            console.log('Disconnected from WebSocket server');
-        };
-
-        return () => socket.close();
-    }, []);
+        if (productData) {
+            setRfidData(productData);
+        }
+    }, [productData]);
 
     const { writeContractAsync, isPending } = useScaffoldWriteContract("StateTransition");
 
     const handleProductUpdate = async () => {
         try {
-            const concatRFID = rfidData.rfid.slice(0, 2) === "0x" ? rfidData.rfid : ("0x" + rfidData.rfid);
-            const formattedRFID = rfidData.rfid ? ethers.zeroPadBytes(concatRFID, 32) : undefined;
+            const concatRFID = rfidData.rfid.slice(0, 2) === "0x" ? rfidData.rfid : ("0x" + rfidData.rfid); // format to Hex
 
             const args = [
                 rfidData.id !== null ? BigInt(rfidData.id) : undefined, // Convert to BigInt if not null
-                formattedRFID,
+                concatRFID,
                 newStatus !== null ? newStatus : undefined,
                 rfidData.supplyChainNode ? BigInt(rfidData.supplyChainNode) : BigInt(0), // Convert to BigInt if not null
             ].filter(arg => arg !== undefined); // Filter out undefined values
@@ -104,6 +92,8 @@ export const UpdateState = () => {
                     }
                 }
             );
+            setnewStatus(null);
+            setRfidData({ id: "", rfid: "", supplyChainNode: "" });
         } catch (e) {
             console.error("Error updating product state", e);
         }
@@ -119,12 +109,12 @@ export const UpdateState = () => {
             >
                 {/* Product ID Input */}
                 <div className="mb-4">
-                    <label htmlFor="productID" className="block font-medium">
+                    <label htmlFor="productId" className="block font-medium">
                         Product ID:
                     </label>
                     <input
                         type="number"
-                        id="productID"
+                        id="productId"
                         className="border p-2 w-full"
                         name="id"
                         value={rfidData.id}
@@ -163,7 +153,6 @@ export const UpdateState = () => {
                         required
                     >
                         <option value="">Select Status</option>
-                        <option value={StatusEnum.Created}>Created</option>
                         <option value={StatusEnum.Storage}>Storage</option>
                         <option value={StatusEnum.Shipped}>Shipped</option>
                         <option value={StatusEnum.Received}>Received</option>

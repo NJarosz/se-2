@@ -1,6 +1,6 @@
 const { WebSocketServer } = require("ws");
 
-const wss = new WebSocketServer({ host: 'localhost', port: 4000 }); // Or whichever port you want.  Be sure to set Firewall accordingly.
+const wss = new WebSocketServer({ host: '0.0.0.0', port: 4000 }); // Or whichever port you want.  Be sure to set Firewall accordingly.
 
 wss.on('connection', (ws) => {
     console.log('New client connected');

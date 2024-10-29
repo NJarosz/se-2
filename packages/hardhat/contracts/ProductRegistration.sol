@@ -5,12 +5,12 @@ import "./StateTransition.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 contract ProductRegistration is ReentrancyGuard {
-	address public stateContract;
+	address public immutable STATE_CONTRACT;
 	uint constant ID_NOT_SET = 0;
 
 	struct Product {
 		uint id;
-		bytes32 hashedRfid;
+		bytes24 hashedRfid;
 		string name;
 		uint origin;
 		uint timestamp;
@@ -24,36 +24,40 @@ contract ProductRegistration is ReentrancyGuard {
 
 	constructor(address _addr) {
 		require(_addr != address(0), "State contract address cannot be zero");
-		stateContract = _addr;
+		STATE_CONTRACT = _addr;
 	}
 
 	function registerProduct(
 		uint id,
-		bytes memory rfid,
+		bytes24 rfid,
 		string memory name,
 		uint origin
 	) public nonReentrant {
-		require(products[id].id == ID_NOT_SET, "Product already registered");
+		require(
+			products[id].id == ID_NOT_SET,
+			"Product with this ID already registered"
+		);
 		require(id > ID_NOT_SET, "Invalid product ID");
-		require(bytes(name).length > ID_NOT_SET, "Name cannot be empty");
+		require(bytes(name).length > ID_NOT_SET, "Product name is required");
+		require(rfid.length == 24, "RFID signature must be 24 bytes");
 
 		products[id] = Product(
 			id,
-			keccak256(abi.encodePacked(rfid)),
+			rfid,
 			name,
 			origin,
 			block.timestamp,
 			msg.sender
 		);
 
-		StateTransition st = StateTransition(stateContract);
+		StateTransition st = StateTransition(STATE_CONTRACT);
 		st.updateState(id, rfid, StateTransition.State.Created, origin);
 		emit ProductRegistered(id, name, origin, msg.sender);
 	}
 
 	function transferOwnership(
 		uint id,
-		bytes memory rfid,
+		string memory password,
 		address newOwner
 	) public nonReentrant {
 		require(
@@ -61,9 +65,10 @@ contract ProductRegistration is ReentrancyGuard {
 			"Only owner can change ownership"
 		);
 		require(
-			products[id].hashedRfid == keccak256(abi.encodePacked(rfid)),
-			"Invalid RFID"
-		); // Used as redundant verification of product ownership
+			products[id].hashedRfid ==
+				bytes24(keccak256(abi.encodePacked(password))),
+			"Invalid Password"
+		);
 		require(newOwner != address(0), "New owner address cannot be zero");
 
 		products[id].owner = newOwner;

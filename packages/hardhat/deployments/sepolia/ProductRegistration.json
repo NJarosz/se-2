@@ -1,0 +1,375 @@
+{
+  "address": "0xCd8b4906d1E47551B5F3302c8be3c096F0c9c085",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_addr",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "origin",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "ProductRegistered",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "STATE_CONTRACT",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProduct",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes24",
+              "name": "hashedRfid",
+              "type": "bytes24"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "origin",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct ProductRegistration.Product",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "products",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes24",
+          "name": "hashedRfid",
+          "type": "bytes24"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "origin",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes24",
+          "name": "rfid",
+          "type": "bytes24"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "origin",
+          "type": "uint256"
+        }
+      ],
+      "name": "registerProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "password",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x6492e7c1d8cd9b9353bd42cc5bad8626d40d0b19b7f936200bef0621b88f7e89",
+  "receipt": {
+    "to": null,
+    "from": "0x4Ae1dde850421E05F61B6b7c9E0360e383B10489",
+    "contractAddress": "0xCd8b4906d1E47551B5F3302c8be3c096F0c9c085",
+    "transactionIndex": 29,
+    "gasUsed": "782307",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x8813f42c8b24e3470717fab1064e28c103aa5e776cdc3c3e565b3dea924c7852",
+    "transactionHash": "0x6492e7c1d8cd9b9353bd42cc5bad8626d40d0b19b7f936200bef0621b88f7e89",
+    "logs": [],
+    "blockNumber": 6966925,
+    "cumulativeGasUsed": "6135422",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xe8Bb1819783B7C7372b51A14C7d8ACa6EcA79541"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "b32ffa3f0092d5cf4383c43334c03f11",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_addr\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"origin\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"ProductRegistered\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"STATE_CONTRACT\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"getProduct\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes24\",\"name\":\"hashedRfid\",\"type\":\"bytes24\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"origin\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"internalType\":\"struct ProductRegistration.Product\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"products\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes24\",\"name\":\"hashedRfid\",\"type\":\"bytes24\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"origin\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes24\",\"name\":\"rfid\",\"type\":\"bytes24\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"origin\",\"type\":\"uint256\"}],\"name\":\"registerProduct\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"errors\":{\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}]},\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ProductRegistration.sol\":\"ProductRegistration\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        if (_status == ENTERED) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _status == ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0xf980daa263b661ab8ddee7d4fd833c7da7e7995e2c359ff1f17e67e4112f2236\",\"license\":\"MIT\"},\"contracts/ProductRegistration.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\nimport \\\"./StateTransition.sol\\\";\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\n\\ncontract ProductRegistration is ReentrancyGuard {\\n\\taddress public immutable STATE_CONTRACT;\\n\\tuint constant ID_NOT_SET = 0;\\n\\n\\tstruct Product {\\n\\t\\tuint id;\\n\\t\\tbytes24 hashedRfid;\\n\\t\\tstring name;\\n\\t\\tuint origin;\\n\\t\\tuint timestamp;\\n\\t\\taddress owner;\\n\\t}\\n\\n\\tmapping(uint => Product) public products;\\n\\n\\tevent ProductRegistered(uint id, string name, uint origin, address owner);\\n\\tevent OwnershipTransferred(uint id, address newOwner);\\n\\n\\tconstructor(address _addr) {\\n\\t\\trequire(_addr != address(0), \\\"State contract address cannot be zero\\\");\\n\\t\\tSTATE_CONTRACT = _addr;\\n\\t}\\n\\n\\tfunction registerProduct(\\n\\t\\tuint id,\\n\\t\\tbytes24 rfid,\\n\\t\\tstring memory name,\\n\\t\\tuint origin\\n\\t) public nonReentrant {\\n\\t\\trequire(\\n\\t\\t\\tproducts[id].id == ID_NOT_SET,\\n\\t\\t\\t\\\"Product with this ID already registered\\\"\\n\\t\\t);\\n\\t\\trequire(id > ID_NOT_SET, \\\"Invalid product ID\\\");\\n\\t\\trequire(bytes(name).length > ID_NOT_SET, \\\"Product name is required\\\");\\n\\t\\trequire(rfid.length == 24, \\\"RFID signature must be 24 bytes\\\");\\n\\n\\t\\tproducts[id] = Product(\\n\\t\\t\\tid,\\n\\t\\t\\trfid,\\n\\t\\t\\tname,\\n\\t\\t\\torigin,\\n\\t\\t\\tblock.timestamp,\\n\\t\\t\\tmsg.sender\\n\\t\\t);\\n\\n\\t\\tStateTransition st = StateTransition(STATE_CONTRACT);\\n\\t\\tst.updateState(id, rfid, StateTransition.State.Created, origin);\\n\\t\\temit ProductRegistered(id, name, origin, msg.sender);\\n\\t}\\n\\n\\tfunction transferOwnership(\\n\\t\\tuint id,\\n\\t\\tstring memory password,\\n\\t\\taddress newOwner\\n\\t) public nonReentrant {\\n\\t\\trequire(\\n\\t\\t\\tproducts[id].owner == msg.sender,\\n\\t\\t\\t\\\"Only owner can change ownership\\\"\\n\\t\\t);\\n\\t\\trequire(\\n\\t\\t\\tproducts[id].hashedRfid ==\\n\\t\\t\\t\\tbytes24(keccak256(abi.encodePacked(password))),\\n\\t\\t\\t\\\"Invalid Password\\\"\\n\\t\\t);\\n\\t\\trequire(newOwner != address(0), \\\"New owner address cannot be zero\\\");\\n\\n\\t\\tproducts[id].owner = newOwner;\\n\\t\\temit OwnershipTransferred(id, newOwner);\\n\\t}\\n\\n\\tfunction getProduct(uint id) public view returns (Product memory) {\\n\\t\\trequire(products[id].id != ID_NOT_SET, \\\"No Product Registered\\\");\\n\\t\\treturn products[id];\\n\\t}\\n}\\n\",\"keccak256\":\"0x03b970e25f7736e0aaa952c38c1adef0882089389e971451ee3ebbf2861af644\",\"license\":\"MIT\"},\"contracts/StateTransition.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ncontract StateTransition {\\n\\tuint constant NOT_REGISTERED = 0;\\n\\n\\tenum State {\\n\\t\\tCreated,\\n\\t\\tStorage,\\n\\t\\tShipped,\\n\\t\\tReceived\\n\\t}\\n\\n\\tstruct ProductState {\\n\\t\\tuint id;\\n\\t\\tbytes24 hashedRfid;\\n\\t\\tState state;\\n\\t\\tstring location;\\n\\t\\tuint timestamp;\\n\\t}\\n\\n\\tuint public nodeCount;\\n\\tmapping(uint => string) public supplyChainNodes;\\n\\tmapping(uint => ProductState) public productStates;\\n\\n\\tevent ProductStateUpdated(\\n\\t\\tuint id,\\n\\t\\tState newState,\\n\\t\\tstring location,\\n\\t\\tuint timestamp\\n\\t);\\n\\n\\t// Constructor populates supply chain nodes and provides nodeCount\\n\\tconstructor(string[] memory nodes) {\\n\\t\\tsupplyChainNodes[0] = \\\"In Transit\\\";\\n\\t\\tnodeCount = nodes.length + 2; // Adding 2 for \\\"In Transit\\\" and \\\"End User\\\"\\n\\t\\tfor (uint i = 1; i <= nodes.length; i++) {\\n\\t\\t\\tsupplyChainNodes[i] = nodes[i - 1];\\n\\t\\t}\\n\\t\\tsupplyChainNodes[nodes.length + 1] = \\\"End User\\\";\\n\\t}\\n\\n\\t// This function is used to update the current state of a proudct.\\n\\tfunction updateState(\\n\\t\\tuint id,\\n\\t\\tbytes24 rfid,\\n\\t\\tState newState,\\n\\t\\tuint location\\n\\t) public {\\n\\t\\t//bytes32 hashed = keccak256(abi.encodePacked(rfid)); // Hashes the RFID hash\\n\\n\\t\\trequire(\\n\\t\\t\\tproductStates[id].id == NOT_REGISTERED ||\\n\\t\\t\\t\\tproductStates[id].hashedRfid == rfid,\\n\\t\\t\\t\\\"Improper Inputs\\\"\\n\\t\\t);\\n\\t\\trequire(location < nodeCount, \\\"Invalid location\\\");\\n\\t\\t// Enforce that if the new state is Shipped, the location must be 0\\n\\t\\tif (newState == State.Shipped) {\\n\\t\\t\\trequire(\\n\\t\\t\\t\\tlocation == 0,\\n\\t\\t\\t\\t\\\"Location must be 0 (In Transit) when status is Shipped\\\"\\n\\t\\t\\t);\\n\\t\\t}\\n\\t\\tproductStates[id] = ProductState(\\n\\t\\t\\tid,\\n\\t\\t\\trfid,\\n\\t\\t\\tnewState,\\n\\t\\t\\tsupplyChainNodes[location],\\n\\t\\t\\tblock.timestamp\\n\\t\\t);\\n\\n\\t\\temit ProductStateUpdated(\\n\\t\\t\\tid,\\n\\t\\t\\tnewState,\\n\\t\\t\\tsupplyChainNodes[location],\\n\\t\\t\\tblock.timestamp\\n\\t\\t);\\n\\t}\\n\\n\\t// Returns the current state based on the Product ID\\n\\tfunction getState(uint id) public view returns (ProductState memory) {\\n\\t\\treturn productStates[id];\\n\\t}\\n\\n\\t// Returns a list of all the Nodes and their indices\\n\\tfunction fetchNodes()\\n\\t\\tpublic\\n\\t\\tview\\n\\t\\treturns (uint[] memory ids, string[] memory nodes)\\n\\t{\\n\\t\\tuint[] memory _ids = new uint[](nodeCount);\\n\\t\\tstring[] memory _nodes = new string[](nodeCount);\\n\\t\\tfor (uint256 i = 0; i < nodeCount; i++) {\\n\\t\\t\\t_ids[i] = i;\\n\\t\\t\\t_nodes[i] = supplyChainNodes[i];\\n\\t\\t}\\n\\t\\treturn (_ids, _nodes);\\n\\t}\\n}\\n\",\"keccak256\":\"0xe48738bee6982a7744952f62445b6aa426a78a9b29926660343efb031ecb9d8d\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60a060405234801561001057600080fd5b50604051610db8380380610db883398101604081905261002f916100ad565b60016000556001600160a01b03811661009c5760405162461bcd60e51b815260206004820152602560248201527f537461746520636f6e747261637420616464726573732063616e6e6f74206265604482015264207a65726f60d81b606482015260840160405180910390fd5b6001600160a01b03166080526100dd565b6000602082840312156100bf57600080fd5b81516001600160a01b03811681146100d657600080fd5b9392505050565b608051610cba6100fe600039600081816076015261057a0152610cba6000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c806343e8349a1461005c578063444fda44146100715780637acc0b20146100b5578063b4c637cb146100da578063b9db15b4146100ed575b600080fd5b61006f61006a3660046108a1565b61010d565b005b6100987f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020015b60405180910390f35b6100c86100c3366004610908565b6102d9565b6040516100ac96959493929190610971565b61006f6100e83660046109c2565b6103a7565b6101006100fb366004610908565b610637565b6040516100ac9190610a31565b6101156107d4565b6000838152600160205260409020600501546001600160a01b031633146101835760405162461bcd60e51b815260206004820152601f60248201527f4f6e6c79206f776e65722063616e206368616e6765206f776e6572736869700060448201526064015b60405180910390fd5b816040516020016101949190610a9e565b60408051601f198184030181529181528151602092830120600086815260019384905282902090920154901b67ffffffffffffffff1990811691161461020f5760405162461bcd60e51b815260206004820152601060248201526f125b9d985b1a590814185cdcdddbdc9960821b604482015260640161017a565b6001600160a01b0381166102655760405162461bcd60e51b815260206004820181905260248201527f4e6577206f776e657220616464726573732063616e6e6f74206265207a65726f604482015260640161017a565b60008381526001602090815260409182902060050180546001600160a01b0319166001600160a01b0385169081179091558251868152918201527fba8cc72bdfdb4f3e2281c3f17f6be90c470f76dd1106321a2928859835874bc2910160405180910390a16102d46001600055565b505050565b60016020819052600091825260409182902080549181015460028201805493949190911b9261030790610aba565b80601f016020809104026020016040519081016040528092919081815260200182805461033390610aba565b80156103805780601f1061035557610100808354040283529160200191610380565b820191906000526020600020905b81548152906001019060200180831161036357829003601f168201915b5050505060038301546004840154600590940154929390929091506001600160a01b031686565b6103af6107d4565b6000848152600160205260409020541561041b5760405162461bcd60e51b815260206004820152602760248201527f50726f647563742077697468207468697320494420616c7265616479207265676044820152661a5cdd195c995960ca1b606482015260840161017a565b600084116104605760405162461bcd60e51b8152602060048201526012602482015271125b9d985b1a59081c1c9bd91d58dd08125160721b604482015260640161017a565b60008251116104b15760405162461bcd60e51b815260206004820152601860248201527f50726f64756374206e616d652069732072657175697265640000000000000000604482015260640161017a565b6040805160c08101825285815267ffffffffffffffff1985166020808301918252828401868152606084018690524260808501523360a0850152600089815260019283905285902084518155925191830180546001600160c01b0319169290951c919091179093559151909190600282019061052d9082610b42565b5060608201516003820155608082015160048083019190915560a090920151600590910180546001600160a01b0319166001600160a01b03928316179055604051631722c8cf60e21b81527f00000000000000000000000000000000000000000000000000000000000000009291831691635c8b233c916105b79189918991600091899101610c02565b600060405180830381600087803b1580156105d157600080fd5b505af11580156105e5573d6000803e3d6000fd5b505050507f1a8bfa80b90d0a150d945c6b1acf7d4253e76b8cc6ace1ac1793351fa2d50b8d8584843360405161061e9493929190610c4a565b60405180910390a1506106316001600055565b50505050565b6106846040518060c0016040528060008152602001600067ffffffffffffffff1916815260200160608152602001600081526020016000815260200160006001600160a01b031681525090565b6000828152600160205260409020546106d75760405162461bcd60e51b8152602060048201526015602482015274139bc8141c9bd91d58dd08149959da5cdd195c9959605a1b604482015260640161017a565b600082815260016020818152604092839020835160c0810185528154815292810154841b67ffffffffffffffff191691830191909152600281018054929391929184019161072490610aba565b80601f016020809104026020016040519081016040528092919081815260200182805461075090610aba565b801561079d5780601f106107725761010080835404028352916020019161079d565b820191906000526020600020905b81548152906001019060200180831161078057829003601f168201915b505050918352505060038201546020820152600482015460408201526005909101546001600160a01b031660609091015292915050565b6002600054036107f757604051633ee5aeb560e01b815260040160405180910390fd5b6002600055565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261082557600080fd5b813567ffffffffffffffff80821115610840576108406107fe565b604051601f8301601f19908116603f01168101908282118183101715610868576108686107fe565b8160405283815286602085880101111561088157600080fd5b836020870160208301376000602085830101528094505050505092915050565b6000806000606084860312156108b657600080fd5b83359250602084013567ffffffffffffffff8111156108d457600080fd5b6108e086828701610814565b92505060408401356001600160a01b03811681146108fd57600080fd5b809150509250925092565b60006020828403121561091a57600080fd5b5035919050565b60005b8381101561093c578181015183820152602001610924565b50506000910152565b6000815180845261095d816020860160208601610921565b601f01601f19169290920160200192915050565b86815267ffffffffffffffff198616602082015260c06040820152600061099b60c0830187610945565b60608301959095525060808101929092526001600160a01b031660a0909101529392505050565b600080600080608085870312156109d857600080fd5b84359350602085013567ffffffffffffffff19811681146109f857600080fd5b9250604085013567ffffffffffffffff811115610a1457600080fd5b610a2087828801610814565b949793965093946060013593505050565b602081528151602082015267ffffffffffffffff1960208301511660408201526000604083015160c06060840152610a6c60e0840182610945565b905060608401516080840152608084015160a084015260018060a01b0360a08501511660c08401528091505092915050565b60008251610ab0818460208701610921565b9190910192915050565b600181811c90821680610ace57607f821691505b602082108103610aee57634e487b7160e01b600052602260045260246000fd5b50919050565b601f8211156102d457600081815260208120601f850160051c81016020861015610b1b5750805b601f850160051c820191505b81811015610b3a57828155600101610b27565b505050505050565b815167ffffffffffffffff811115610b5c57610b5c6107fe565b610b7081610b6a8454610aba565b84610af4565b602080601f831160018114610ba55760008415610b8d5750858301515b600019600386901b1c1916600185901b178555610b3a565b600085815260208120601f198616915b82811015610bd457888601518255948401946001909101908401610bb5565b5085821015610bf25787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b84815267ffffffffffffffff19841660208201526080810160048410610c3857634e487b7160e01b600052602160045260246000fd5b60408201939093526060015292915050565b848152608060208201526000610c636080830186610945565b6040830194909452506001600160a01b03919091166060909101529291505056fea2646970667358221220dedd304dc772953365a238d124159bd0859a9f44e3975bdadfebd1775f923b1c64736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c806343e8349a1461005c578063444fda44146100715780637acc0b20146100b5578063b4c637cb146100da578063b9db15b4146100ed575b600080fd5b61006f61006a3660046108a1565b61010d565b005b6100987f000000000000000000000000000000000000000000000000000000000000000081565b6040516001600160a01b0390911681526020015b60405180910390f35b6100c86100c3366004610908565b6102d9565b6040516100ac96959493929190610971565b61006f6100e83660046109c2565b6103a7565b6101006100fb366004610908565b610637565b6040516100ac9190610a31565b6101156107d4565b6000838152600160205260409020600501546001600160a01b031633146101835760405162461bcd60e51b815260206004820152601f60248201527f4f6e6c79206f776e65722063616e206368616e6765206f776e6572736869700060448201526064015b60405180910390fd5b816040516020016101949190610a9e565b60408051601f198184030181529181528151602092830120600086815260019384905282902090920154901b67ffffffffffffffff1990811691161461020f5760405162461bcd60e51b815260206004820152601060248201526f125b9d985b1a590814185cdcdddbdc9960821b604482015260640161017a565b6001600160a01b0381166102655760405162461bcd60e51b815260206004820181905260248201527f4e6577206f776e657220616464726573732063616e6e6f74206265207a65726f604482015260640161017a565b60008381526001602090815260409182902060050180546001600160a01b0319166001600160a01b0385169081179091558251868152918201527fba8cc72bdfdb4f3e2281c3f17f6be90c470f76dd1106321a2928859835874bc2910160405180910390a16102d46001600055565b505050565b60016020819052600091825260409182902080549181015460028201805493949190911b9261030790610aba565b80601f016020809104026020016040519081016040528092919081815260200182805461033390610aba565b80156103805780601f1061035557610100808354040283529160200191610380565b820191906000526020600020905b81548152906001019060200180831161036357829003601f168201915b5050505060038301546004840154600590940154929390929091506001600160a01b031686565b6103af6107d4565b6000848152600160205260409020541561041b5760405162461bcd60e51b815260206004820152602760248201527f50726f647563742077697468207468697320494420616c7265616479207265676044820152661a5cdd195c995960ca1b606482015260840161017a565b600084116104605760405162461bcd60e51b8152602060048201526012602482015271125b9d985b1a59081c1c9bd91d58dd08125160721b604482015260640161017a565b60008251116104b15760405162461bcd60e51b815260206004820152601860248201527f50726f64756374206e616d652069732072657175697265640000000000000000604482015260640161017a565b6040805160c08101825285815267ffffffffffffffff1985166020808301918252828401868152606084018690524260808501523360a0850152600089815260019283905285902084518155925191830180546001600160c01b0319169290951c919091179093559151909190600282019061052d9082610b42565b5060608201516003820155608082015160048083019190915560a090920151600590910180546001600160a01b0319166001600160a01b03928316179055604051631722c8cf60e21b81527f00000000000000000000000000000000000000000000000000000000000000009291831691635c8b233c916105b79189918991600091899101610c02565b600060405180830381600087803b1580156105d157600080fd5b505af11580156105e5573d6000803e3d6000fd5b505050507f1a8bfa80b90d0a150d945c6b1acf7d4253e76b8cc6ace1ac1793351fa2d50b8d8584843360405161061e9493929190610c4a565b60405180910390a1506106316001600055565b50505050565b6106846040518060c0016040528060008152602001600067ffffffffffffffff1916815260200160608152602001600081526020016000815260200160006001600160a01b031681525090565b6000828152600160205260409020546106d75760405162461bcd60e51b8152602060048201526015602482015274139bc8141c9bd91d58dd08149959da5cdd195c9959605a1b604482015260640161017a565b600082815260016020818152604092839020835160c0810185528154815292810154841b67ffffffffffffffff191691830191909152600281018054929391929184019161072490610aba565b80601f016020809104026020016040519081016040528092919081815260200182805461075090610aba565b801561079d5780601f106107725761010080835404028352916020019161079d565b820191906000526020600020905b81548152906001019060200180831161078057829003601f168201915b505050918352505060038201546020820152600482015460408201526005909101546001600160a01b031660609091015292915050565b6002600054036107f757604051633ee5aeb560e01b815260040160405180910390fd5b6002600055565b634e487b7160e01b600052604160045260246000fd5b600082601f83011261082557600080fd5b813567ffffffffffffffff80821115610840576108406107fe565b604051601f8301601f19908116603f01168101908282118183101715610868576108686107fe565b8160405283815286602085880101111561088157600080fd5b836020870160208301376000602085830101528094505050505092915050565b6000806000606084860312156108b657600080fd5b83359250602084013567ffffffffffffffff8111156108d457600080fd5b6108e086828701610814565b92505060408401356001600160a01b03811681146108fd57600080fd5b809150509250925092565b60006020828403121561091a57600080fd5b5035919050565b60005b8381101561093c578181015183820152602001610924565b50506000910152565b6000815180845261095d816020860160208601610921565b601f01601f19169290920160200192915050565b86815267ffffffffffffffff198616602082015260c06040820152600061099b60c0830187610945565b60608301959095525060808101929092526001600160a01b031660a0909101529392505050565b600080600080608085870312156109d857600080fd5b84359350602085013567ffffffffffffffff19811681146109f857600080fd5b9250604085013567ffffffffffffffff811115610a1457600080fd5b610a2087828801610814565b949793965093946060013593505050565b602081528151602082015267ffffffffffffffff1960208301511660408201526000604083015160c06060840152610a6c60e0840182610945565b905060608401516080840152608084015160a084015260018060a01b0360a08501511660c08401528091505092915050565b60008251610ab0818460208701610921565b9190910192915050565b600181811c90821680610ace57607f821691505b602082108103610aee57634e487b7160e01b600052602260045260246000fd5b50919050565b601f8211156102d457600081815260208120601f850160051c81016020861015610b1b5750805b601f850160051c820191505b81811015610b3a57828155600101610b27565b505050505050565b815167ffffffffffffffff811115610b5c57610b5c6107fe565b610b7081610b6a8454610aba565b84610af4565b602080601f831160018114610ba55760008415610b8d5750858301515b600019600386901b1c1916600185901b178555610b3a565b600085815260208120601f198616915b82811015610bd457888601518255948401946001909101908401610bb5565b5085821015610bf25787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b84815267ffffffffffffffff19841660208201526080810160048410610c3857634e487b7160e01b600052602160045260246000fd5b60408201939093526060015292915050565b848152608060208201526000610c636080830186610945565b6040830194909452506001600160a01b03919091166060909101529291505056fea2646970667358221220dedd304dc772953365a238d124159bd0859a9f44e3975bdadfebd1775f923b1c64736f6c63430008140033",
+  "devdoc": {
+    "errors": {
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 10,
+        "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+        "label": "_status",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 97,
+        "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+        "label": "products",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_uint256,t_struct(Product)92_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bytes24": {
+        "encoding": "inplace",
+        "label": "bytes24",
+        "numberOfBytes": "24"
+      },
+      "t_mapping(t_uint256,t_struct(Product)92_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct ProductRegistration.Product)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Product)92_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Product)92_storage": {
+        "encoding": "inplace",
+        "label": "struct ProductRegistration.Product",
+        "members": [
+          {
+            "astId": 81,
+            "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+            "label": "id",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 83,
+            "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+            "label": "hashedRfid",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes24"
+          },
+          {
+            "astId": 85,
+            "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+            "label": "name",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 87,
+            "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+            "label": "origin",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 89,
+            "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 91,
+            "contract": "contracts/ProductRegistration.sol:ProductRegistration",
+            "label": "owner",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address"
+          }
+        ],
+        "numberOfBytes": "192"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

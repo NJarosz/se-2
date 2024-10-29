@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 import { Address } from "~~/components/scaffold-eth";
+import useWebSocket from "~~/hooks/scaffold-eth/useWebSocket";
 
-export const ProductState = () => {
+export const ProductStatus = () => {
     const [productId, setProductId] = useState<number | null>(null); // State to hold the user's input
     const [submittedId, setSubmittedId] = useState<number | null>(null); // Separate state for submitted ID
     const [hasSubmitted, setHasSubmitted] = useState(false); // Track if form has been submitted
@@ -23,12 +24,12 @@ export const ProductState = () => {
         args: submittedId !== null ? [BigInt(submittedId)] : undefined, // Pass the user's input as BigInt
     });
 
-    const origin = getProduct ? BigInt(getProduct.origin) : 0;
+    const origin = useMemo(() => (getProduct ? BigInt(getProduct.origin) : 0), [getProduct]);
 
     const { data: nodes } = useScaffoldReadContract({
         contractName: "StateTransition",
         functionName: "supplyChainNodes",
-        args: [BigInt(origin)], // Pass the user's input as BigInt
+        args: [origin], // Pass the user's input as BigInt
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,34 +43,21 @@ export const ProductState = () => {
         setHasSubmitted(true); // Mark the form as submitted
     };
 
+    const { data: productData } = useWebSocket('ws://localhost:4000');
+
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:4000'); //Configure to whichever port you defined in your websocket-server.ts file
-
-        socket.onopen = () => {
-            console.log('Connected to WebSocket server');
-        };
-
-        socket.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            setProductId(data.id);
-        };
-
-        socket.onclose = () => {
-            console.log('Disconnected from WebSocket server');
-        };
-
-        return () => socket.close();
-    }, []);
+        if (productData) {
+            setProductId(productData.id);
+        }
+    }, [productData]);
 
     return (
         <div>
             <div className="flex flex-col items-center">
-                <h1 className="font-bold text-4xl text-center mb-8">Retrieve Product State</h1>
-
-                {/* Form with input field and submit button */}
+                <h1 className="font-bold text-4xl text-center mb-8">Retrieve Product Status</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col text-center items-center">
                     <input
-                        type="text" // Changed to text to prevent scroll buttons
+                        type="text"
                         value={productId ?? ""}
                         onChange={handleInputChange}
                         placeholder="Enter Product ID"
@@ -84,13 +72,12 @@ export const ProductState = () => {
                 </form>
             </div>
 
-            {/* Display product state information */}
             {hasSubmitted && submittedId !== null ? (
                 getState && getProduct && nodes ? (
                     <div className="mt-8 bg-white p-6 rounded-lg shadow-lg max-w-xl mx-auto">
                         <h2 className="font-bold text-2xl mb-4 text-center">Product Information</h2>
                         <p>Product ID: {getState.id.toString()}</p>
-                        <p>RFID Hash: {getState.secret.toString().slice(0, 6)}...{getState.secret.toString().slice(-3)}</p>
+                        <p>RFID Hash: {getState.hashedRfid.toString().slice(0, 6)}...{getState.hashedRfid.toString().slice(-3)}</p>
                         <p>Name: {getProduct.name.toString()}</p>
                         <p>Status: {states[getState.state]}</p>
                         <p>Origin: {nodes.toString()}</p>
