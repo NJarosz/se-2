@@ -65,7 +65,7 @@ git checkout rfid-supply-chain</code></pre>
 
 <h2 id="usage">Usage</h2>
 <ol>
-    <li><strong>Connecting RFID Scanner</strong>:
+    <li><strong>Connecting RFID Scanner (RC522)/ Raspberry Pi</strong>:
         <ul>
             <li>Connect your RFID scanner to the Raspberry Pi.</li>
             <li>Set up venv- pip install websocket, mfrc522, eth_utils, dotenv</li>
