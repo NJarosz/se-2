@@ -5,77 +5,126 @@
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+<h1>RFID Supply Chain Tracking System</h1>
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+<h2>Overview</h2>
+<p>
+    This project is an RFID-based supply chain tracking system that leverages blockchain technology (using Ethereum) for secure, transparent tracking of product statuses across different nodes in the supply chain. This application aims to enhance product traceability by allowing users to view and update product information, including location, status, and origin details, through a decentralized network.
+</p>
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+<h2>Table of Contents</h2>
+<ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#project-structure">Project Structure</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+</ul>
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+<h2 id="features">Features</h2>
+<ul>
+    <li><strong>RFID Integration</strong>: Utilizes RFID tags to capture product information as it moves across various nodes in the supply chain.</li>
+    <li><strong>Blockchain Transparency</strong>: Leverages Ethereum smart contracts to log product states immutably on the blockchain.</li>
+    <li><strong>Dynamic Status Tracking</strong>: Enables users to retrieve real-time product status, owner details, timestamps, and RFID hash identifiers.</li>
+    <li><strong>WebSocket Support</strong>: Allows real-time updates for products using WebSocket connections.</li>
+    <li><strong>UI/UX Design</strong>: Sleek and responsive UI built with Material-UI and Tailwind CSS.</li>
+</ul>
 
-## Requirements
+<h2 id="tech-stack">Tech Stack</h2>
+<ul>
+    <li><strong>Frontend</strong>: Next.js, TypeScript, Tailwind CSS, Material-UI</li>
+    <li><strong>Backend</strong>: Scaffold-ETH (Hardhat, Ethers.js), WebSocket</li>
+    <li><strong>Blockchain</strong>: Ethereum (using Scaffold-ETH and Hardhat)</li>
+    <li><strong>Hardware</strong>: Raspberry Pi for RFID scanning and communication</li>
+</ul>
 
-Before you begin, you need to install the following tools:
+<h2 id="installation">Installation</h2>
+<ol>
+    <li><strong>Clone the repository</strong>:
+        <pre><code>git clone https://github.com/your-username/rfid-supply-chain.git
+cd rfid-supply-chain</code></pre>
+    </li>
+    <li><strong>Install dependencies</strong>:
+        <pre><code>yarn install</code></pre>
+    </li>
+    <li><strong>Start Hardhat Blockchain</strong>: Run the local Ethereum testnet using Hardhat:
+        <pre><code>yarn chain</code></pre>
+    </li>
+    <li><strong>Deploy Smart Contracts</strong>: Deploy the contracts to the local Hardhat network:
+        <pre><code>yarn deploy</code></pre>
+    </li>
+    <li><strong>Start Frontend Server</strong>:
+        <pre><code>yarn start</code></pre>
+    </li>
+    <li><strong>Start WebSocket Server</strong> (if applicable): Configure and run the WebSocket server to manage real-time RFID input. Ensure that it connects correctly to your RFID scanner hardware.
+    </li>
+</ol>
 
-- [Node (>= v18.18)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+<h2 id="usage">Usage</h2>
+<ol>
+    <li><strong>Connecting RFID Scanner</strong>:
+        <ul>
+            <li>Connect your RFID scanner to the Raspberry Pi.</li>
+            <li>The scanner sends product data to the frontend via WebSocket.</li>
+        </ul>
+    </li>
+    <li><strong>Viewing Product Status</strong>:
+        <ul>
+            <li>On the homepage, enter a product ID in the input field.</li>
+            <li>Submit to retrieve real-time information on the product's state, including:
+                <ul>
+                    <li>RFID hash</li>
+                    <li>Status (Created, Shipped, etc.)</li>
+                    <li>Origin and location details</li>
+                    <li>Owner address</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><strong>Updating Product Status</strong>:
+        <ul>
+            <li>Trigger RFID scans at different supply chain nodes to automatically update product status on the blockchain.</li>
+        </ul>
+    </li>
+</ol>
 
-## Quickstart
+<h2 id="project-structure">Project Structure</h2>
+<pre>
+<code>├── app/                       # Frontend Next.js Application
+├── components/                # Reusable UI components
+├── contracts/                 # Solidity smart contracts for blockchain
+├── hooks/                     # Custom React hooks
+├── public/                    # Static assets
+├── scripts/                   # Deployment and testing scripts
+├── utils/                     # Utility functions for data handling and validation
+├── server/                    # WebSocket server setup for real-time updates
+└── README.md                  # Project documentation</code>
+</pre>
 
-To get started with Scaffold-ETH 2, follow the steps below:
+<h3>File Highlights</h3>
+<ul>
+    <li><strong>hooks/useWebSocket.ts</strong>: Manages WebSocket connections for real-time RFID updates.</li>
+    <li><strong>components/ProductStatus.tsx</strong>: Component for displaying detailed product information.</li>
+    <li><strong>contracts/StateTransition.sol</strong>: Smart contract managing product state transitions.</li>
+    <li><strong>contracts/ProductRegistration.sol</strong>: Smart contract for registering new products on the blockchain.</li>
+</ul>
 
-1. Clone this repo & install dependencies
+<h2 id="contributing">Contributing</h2>
+<p>Contributions are welcome! Please follow these steps to contribute:</p>
+<ol>
+    <li>Fork the repository.</li>
+    <li>Create a new branch (<code>feature/your-feature-name</code>).</li>
+    <li>Commit your changes.</li>
+    <li>Push to the branch.</li>
+    <li>Open a pull request.</li>
+</ol>
+<p>Please ensure your contributions align with the project’s code style and include relevant documentation for new features.</p>
 
-```
-git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-cd scaffold-eth-2
-yarn install
-```
+<h2 id="license">License</h2>
+<p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more details.</p>
 
-2. Run a local network in the first terminal:
+<h2>Contact</h2>
+<p>For any questions or feedback, please feel free to reach out through the repository’s issue tracker.</p>
 
-```
-yarn chain
-```
-
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `hardhat.config.ts`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
-```
-
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
-
-4. On a third terminal, start your NextJS app:
-
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-**What's next**:
-
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
-- Edit your smart contract test in: `packages/hardhat/test`. To run test use `yarn hardhat:test`
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
