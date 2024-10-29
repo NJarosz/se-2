@@ -68,8 +68,8 @@ git checkout rfid-supply-chain</code></pre>
     <li><strong>Connecting RFID Scanner</strong>:
         <ul>
             <li>Connect your RFID scanner to the Raspberry Pi.</li>
-            <li>Set up venv- import websocket, mfrc522, eth_utils, dotenv</li>
-            <li>Set up .env file- include websockset server url and node id number</li>
+            <li>Set up venv- pip install websocket, mfrc522, eth_utils, dotenv</li>
+            <li>Set up .env file- include WebSockset server url and Node ID number</li>
             <li>The scanner sends product data to the frontend via WebSocket using scan.py or register.py scripts.</li>
         </ul>
     </li>
