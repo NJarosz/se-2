@@ -9,7 +9,7 @@
 
 <h2>Overview</h2>
 <p>
-    This project is an RFID-based supply chain tracking system that leverages blockchain technology (using Ethereum) for secure, transparent tracking of product statuses across different nodes in the supply chain. This application aims to enhance product traceability by allowing users to view and update product information, including location, status, and origin details, through a decentralized network.
+    This project is an RFID-based blockchahain supply chain tracking system that leverages secure, transparent tracking of product statuses across different nodes in the supply chain. This application aims to enhance product traceability by allowing users to view and update product information, including location, status, and origin details, through a decentralized network.
 </p>
 
 <h2>Table of Contents</h2>
@@ -37,13 +37,13 @@
     <li><strong>Frontend</strong>: Next.js, TypeScript, Tailwind CSS, Material-UI</li>
     <li><strong>Backend</strong>: Scaffold-ETH (Hardhat, Ethers.js), WebSocket</li>
     <li><strong>Blockchain</strong>: Ethereum (using Scaffold-ETH and Hardhat)</li>
-    <li><strong>Hardware</strong>: Raspberry Pi for RFID scanning and communication</li>
+    <li><strong>Hardware</strong>: Python, Raspberry Pi for RFID scanning and communication</li>
 </ul>
 
 <h2 id="installation">Installation</h2>
 <ol>
     <li><strong>Clone the repository</strong>:
-        <pre><code>git clone https://github.com/your-username/rfid-supply-chain.git
+        <pre><code>git clone https://github.com/NJarosz/se-2.git
 cd rfid-supply-chain</code></pre>
     </li>
     <li><strong>Install dependencies</strong>:
@@ -58,7 +58,7 @@ cd rfid-supply-chain</code></pre>
     <li><strong>Start Frontend Server</strong>:
         <pre><code>yarn start</code></pre>
     </li>
-    <li><strong>Start WebSocket Server</strong> (if applicable): Configure and run the WebSocket server to manage real-time RFID input. Ensure that it connects correctly to your RFID scanner hardware.
+    <li><strong>Start WebSocket Server</strong> (if applicable): Configure and run the WebSocket server to manage real-time RFID input. Choose port (default is 4000) and configure firewall to allow communication between Raspberry Pi and websocket server.  Ensure that it connects correctly to your RFID scanner hardware.
     </li>
 </ol>
 
@@ -67,7 +67,9 @@ cd rfid-supply-chain</code></pre>
     <li><strong>Connecting RFID Scanner</strong>:
         <ul>
             <li>Connect your RFID scanner to the Raspberry Pi.</li>
-            <li>The scanner sends product data to the frontend via WebSocket.</li>
+            <li>Set up venv- import websocket, mfrc522, eth_utils, dotenv</li>
+            <li>Set up .env file- include websockset server url and node id number</li>
+            <li>The scanner sends product data to the frontend via WebSocket using scan.py or register.py scripts.</li>
         </ul>
     </li>
     <li><strong>Viewing Product Status</strong>:
