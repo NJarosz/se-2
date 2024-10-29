@@ -95,14 +95,23 @@ git checkout rfid-supply-chain</code></pre>
 
 <h2 id="project-structure">Project Structure</h2>
 <pre>
-<code>├── app/                       # Frontend Next.js Application
+<code>hardhat
+├── contracts/                 # Solidity smart contracts
+├── deploy/                    # Typescript scripts for deployment
+├── deployments/               # Contract ABI's
+├── scripts/                   # Utility scripts for accounts
+├── test/                      # Testing scripts
+nextjs 
+├── app/                       # Frontend Next.js Application
 ├── components/                # Reusable UI components
-├── contracts/                 # Solidity smart contracts for blockchain
+├── contracts/                 # Deployed Solidity smart contracts APIS
 ├── hooks/                     # Custom React hooks
 ├── public/                    # Static assets
-├── scripts/                   # Deployment and testing scripts
 ├── utils/                     # Utility functions for data handling and validation
-├── server/                    # WebSocket server setup for real-time updates
+├── websocket-server.ts        # WebSocket server setup for real-time updates
+python
+├── register.py                # Run on Raspberry Pi to register a new RFID tagged product and send to nextjs App
+├── scan.py                    # Run on RPi to scan an RFID tagged product and send data to nextjs App
 └── README.md                  # Project documentation</code>
 </pre>
 
