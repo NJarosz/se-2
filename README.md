@@ -1,81 +1,112 @@
-# 🏗 Scaffold-ETH 2
+RFID Supply Chain Tracking System
+Overview
+This project is an RFID-based supply chain tracking system that leverages blockchain technology (using Ethereum) for secure, transparent tracking of product statuses across different nodes in the supply chain. This application aims to enhance product traceability by allowing users to view and update product information, including location, status, and origin details, through a decentralized network.
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+Table of Contents
+Features
+Tech Stack
+Installation
+Usage
+Project Structure
+Contributing
+License
+Features
+RFID Integration: Utilizes RFID tags to capture product information as it moves across various nodes in the supply chain.
+Blockchain Transparency: Leverages Ethereum smart contracts to log product states immutably on the blockchain.
+Dynamic Status Tracking: Enables users to retrieve real-time product status, owner details, timestamps, and RFID hash identifiers.
+WebSocket Support: Allows real-time updates for products using WebSocket connections.
+UI/UX Design: Sleek and responsive UI built with Material-UI and Tailwind CSS.
+Tech Stack
+Frontend: Next.js, TypeScript, Tailwind CSS, Material-UI
+Backend: Scaffold-ETH (Hardhat, Ethers.js), WebSocket
+Blockchain: Ethereum (using Scaffold-ETH and Hardhat)
+Hardware: Raspberry Pi for RFID scanning and communication
+Installation
+Clone the repository:
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+bash
+Copy code
+git clone https://github.com/your-username/rfid-supply-chain.git
+cd rfid-supply-chain
+Install dependencies:
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
-
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
-
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
-
-## Requirements
-
-Before you begin, you need to install the following tools:
-
-- [Node (>= v18.18)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
-
-## Quickstart
-
-To get started with Scaffold-ETH 2, follow the steps below:
-
-1. Clone this repo & install dependencies
-
-```
-git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-cd scaffold-eth-2
+bash
+Copy code
+# For the main application
 yarn install
-```
+Start Hardhat Blockchain: Run the local Ethereum testnet using Hardhat:
 
-2. Run a local network in the first terminal:
-
-```
+bash
+Copy code
 yarn chain
-```
+Deploy Smart Contracts: Deploy the contracts to the local Hardhat network:
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `hardhat.config.ts`.
-
-3. On a second terminal, deploy the test contract:
-
-```
+bash
+Copy code
 yarn deploy
-```
+Start Frontend Server:
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
-
-4. On a third terminal, start your NextJS app:
-
-```
+bash
+Copy code
 yarn start
-```
+Start WebSocket Server (if applicable): Configure and run the WebSocket server to manage real-time RFID input. Ensure that it connects correctly to your RFID scanner hardware.
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+Usage
+Connecting RFID Scanner:
 
-**What's next**:
+Connect your RFID scanner to the Raspberry Pi.
+The scanner sends product data to the frontend via WebSocket.
+Viewing Product Status:
 
-- Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
-- Edit your smart contract test in: `packages/hardhat/test`. To run test use `yarn hardhat:test`
+On the homepage, enter a product ID in the input field.
+Submit to retrieve real-time information on the product's state, including:
+RFID hash
+Status (Created, Shipped, etc.)
+Origin and location details
+Owner address
+Updating Product Status:
 
-## Documentation
+Trigger RFID scans at different supply chain nodes to automatically update product status on the blockchain.
+Project Structure
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+hardhat
+├── contracts/                 # Solidity smart contracts
+├── deploy/                    # Typescript scripts for deployment
+├── deployments/               # Contract ABI's
+├── scripts/                   # Utility scripts for accounts
+├── test/                      # Testing scripts
+nextjs 
+├── app/                       # Frontend Next.js Application
+├── components/                # Reusable UI components
+├── contracts/                 # Deployed Solidity smart contracts APIS
+├── hooks/                     # Custom React hooks
+├── public/                    # Static assets
+├── utils/                     # Utility functions for data handling and validation
+├── websocket-server.ts        # WebSocket server setup for real-time updates
+python
+├── register.py                # Run on Raspberry Pi to register a new RFID tagged product and send to nextjs App
+├── scan.py                    # Run on RPi to scan an RFID tagged product and send data to nextjs App
+└── README.md                  # Project documentation
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
 
-## Contributing to Scaffold-ETH 2
+File Highlights
+hooks/useWebSocket.ts: Manages WebSocket connections for real-time RFID updates.
+components/ProductStatus.tsx: Component for displaying detailed product information.
+contracts/StateTransition.sol: Smart contract managing product state transitions.
+contracts/ProductRegistration.sol: Smart contract for registering new products on the blockchain.
+Contributing
+Contributions are welcome! Please follow these steps to contribute:
 
-We welcome contributions to Scaffold-ETH 2!
+Fork the repository.
+Create a new branch (feature/your-feature-name).
+Commit your changes.
+Push to the branch.
+Open a pull request.
+Please ensure your contributions align with the project’s code style and include relevant documentation for new features.
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+Contact
+For any questions or feedback, please feel free to reach out through the repository’s issue tracker.
+
